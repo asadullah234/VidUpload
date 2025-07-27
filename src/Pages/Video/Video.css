@@ -1,0 +1,37 @@
+.play-container{
+    background:#f9f9f9;
+    padding-left:2%;
+    padding-right: 2%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+.uploaded-video-player {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.uploaded-video-player video {
+    width: 100%;
+    max-height: 600px;
+    background: #000;
+}
+
+.video-info {
+    padding: 15px 0;
+}
+
+.video-info h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.video-info p {
+    color: #606060;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
