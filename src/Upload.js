@@ -1,20 +1,24 @@
 import "./Upload.css";
-import React,{useState} from "react";
+import React, { useState, useContext } from "react";
 import thumbnail from "./assets/thumbnail1.png";
 import { useNavigate } from 'react-router-dom';
+import { VideoContext } from "./context/VideoContext";
 
-const Upload = ({ addVideo }) => {
+const Upload = () => {
   const [video, setVideo] = useState(null);
   const [thumbnailImg, setThumbnailImg] = useState(thumbnail);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const { addVideo } = useContext(VideoContext);
 
   const handleVideoChange = (e) => {
+    e.preventDefault();
     setVideo(e.target.files[0]);
   };
 
   const handleThumbnailChange = (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -28,25 +32,28 @@ const Upload = ({ addVideo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    if (!video) {
+      alert("Please select a video file");
+      return;
+    }
+
+    // Use the original file directly - don't create a new Blob
+    const videoUrl = URL.createObjectURL(video);
+    
     const newVideo = {
       id: Date.now().toString(),
       title,
       description,
-      videoUrl: URL.createObjectURL(video),
+      videoUrl: videoUrl, // Direct blob URL from original file
+      videoFile: video, // Store the actual file object
       thumbnail: thumbnailImg,
       channel: "You",
       views: "0",
       timestamp: new Date().toLocaleDateString()
     };
 
-    // Add to local storage
-    const existingVideos = JSON.parse(localStorage.getItem('videos') || '[]');
-    localStorage.setItem('videos', JSON.stringify([...existingVideos, newVideo]));
-    
-    // If using context/state management
-    if (addVideo) {
-      addVideo(newVideo);
-    }
+    // Add video using context
+    addVideo(newVideo);
     
     navigate("/"); // Redirect to home after upload
   };
@@ -70,7 +77,7 @@ const Upload = ({ addVideo }) => {
             <input
               id="video-upload"
               type="file"
-              accept="video/*"
+              accept="video/mp4,video/webm,video/avi,video/mov"
               onChange={handleVideoChange}
               required
             />

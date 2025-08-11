@@ -4,6 +4,7 @@
     grid-column-gap:16px;
     grid-row-gap:30px;
     margin-top:15px;
+ 
 
 }
 .card img{
@@ -30,6 +31,27 @@
 
 }
 .card p{
-    font-size: 14px;
+    font-size: 14px;  
 
+}
+.feed {
+  background-color: var(--bg-color);
+  padding: 20px;
+  margin:20px;
+  text-align: left;
+  
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.card h2, .card h3 {
+  color: var(--text-color);
+}
+
+.card p {
+  color: var(--secondary-text);
 }

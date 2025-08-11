@@ -17,5 +17,74 @@ img{
 .flex-div{
   display: flex;
   align-items: center;
-  
+
 }
+/* Light Mode Colors */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #030303;
+  --secondary-text: #606060;
+  --border-color: #e5e5e5;
+  --card-bg: #f9f9f9;
+  --hover-color: #f2f2f2;
+  --primary-color: #065fd4;
+}
+
+/* Dark Mode Colors */
+.dark-mode {
+  --bg-color: #0f0f0f;
+
+  --secondary-text: #aaa;
+  --border-color: #303030;
+  --card-bg: #181818;
+ 
+  --primary-color: #3ea6ff;
+}
+
+/* Apply theme colors */
+body {
+  background-color: var(--bg-color);
+  
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.card:hover {
+  background-color: var(--hover-color);
+}
+
+/* Buttons */
+button {
+  color: var(--text-color);
+  background-color: transparent;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+
+
+/* Inputs */
+input {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Add more component-specific styles as needed */
